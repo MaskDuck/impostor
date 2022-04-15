@@ -42,7 +42,9 @@ class Suggestion(BaseCog):
             embed.set_footer(text=f"By {str(interaction.user)} (ID {interaction.user.id})")
         
         channel = self.bot.get_channel(831425425510760478)
-        await channel.send(embed=embed)
+        message = await channel.send(embed=embed)
+        await message.add_reaction("✅")
+        await message.add_reaction("❌")
         log_channel = self.bot.get_channel(955105139461607444)
         await log_channel.send(f"{str(interaction.user)} has suggested {suggestion}.")
         await interaction.response.send_message("You can now see your suggestion in <#831425425510760478>.", ephemeral=True)
@@ -84,6 +86,6 @@ class Suggestion(BaseCog):
         await message.edit(embed=embed)
 
         await interaction.response.send_message("Done.")
-        
+
 def setup(bot):
     bot.add_cog(Suggestion(bot))
