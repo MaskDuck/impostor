@@ -8,7 +8,7 @@ if debug:
 
 class Impostor(commands.Bot):
     def __init__(self):
-        super().__init__(command_prefix='sus ', intents=Intents.none())
+        super().__init__(command_prefix='sus ', intents=Intents.all())
         self.load_extension("exts.suggestion")
     
     
