@@ -1,2 +1,4 @@
 src/*.env
 __pycache__
+src/exts/activity.py
+src/exts/meta.py
