@@ -1,7 +1,7 @@
 from models.basecog import BaseCog
 from nextcord import SlashOption, Embed, Colour, slash_command
 from nextcord.ext import application_checks
-from nextcord.errors import InteractionAlreadyResponded
+from nextcord.errors import InteractionResponded
 from contextlib import suppress
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
@@ -53,7 +53,7 @@ class Suggestion(BaseCog):
     
     @_suggest.on_autocomplete("_for")
     async def _on_suggest_for_autocomplete(self, interaction, _for: str):
-        with suppress(InteractionAlreadyResponded):
+        with suppress(InteractionResponded):
             if not _for:
                 await interaction.response.send_autocomplete(self.suggestion_mode)
         
