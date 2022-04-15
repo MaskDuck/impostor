@@ -41,8 +41,10 @@ class Suggestion(BaseCog):
             )
             embed.set_footer(text=f"By {str(interaction.user)} (ID {interaction.user.id})")
         
-        channel = self.bot.get_channel(830872946888146964)
+        channel = self.bot.get_channel(831425425510760478)
         await channel.send(embed=embed)
+        log_channel = self.bot.get_channel(955105139461607444)
+        await log_channel.send(f"{str(interaction.user)} has suggested {suggestion}.")
         await interaction.response.send_message("You can now see your suggestion in <#831425425510760478>.", ephemeral=True)
     
     @_suggest.on_autocomplete("_for")
@@ -62,7 +64,7 @@ class Suggestion(BaseCog):
     )
     @application_checks.has_permissions(administrator=True)
     async def _deny(self, interaction, messageId = SlashOption(name='message_id', description='Message to deny', required=True), why: str = SlashOption(name='why', description='Why did you deny this request?', required=True)):
-        channel = self.bot.get_channel(830872946888146964)
+        channel = self.bot.get_channel(831425425510760478)
         message = await channel.fetch_message(messageId)
         embed = message.embeds[0]
         embed.add_field(name=f'Denied by {str(interaction.user)}', value=why)
@@ -75,11 +77,13 @@ class Suggestion(BaseCog):
     )
     @application_checks.has_permissions(administrator=True)
     async def _approve(self, interaction, messageId = SlashOption(name='message_id', description='Message to approve', required=True), why: str = SlashOption(name='why', description='Why did you deny this request?', required=False)):
-        channel = self.bot.get_channel(830872946888146964)
+        channel = self.bot.get_channel(831425425510760478)
         message = await channel.fetch_message(messageId)
         embed = message.embeds[0]
         embed.add_field(name=f'Approved by {str(interaction.user)}', value=why)
         await message.edit(embed=embed)
+
         await interaction.response.send_message("Done.")
+        
 def setup(bot):
     bot.add_cog(Suggestion(bot))
