@@ -1,6 +1,8 @@
 from models.basecog import BaseCog
 from nextcord import SlashOption, Embed, Colour, slash_command
 from nextcord.ext import application_checks
+from nextcord.errors import InteractionAlreadyResponded
+from contextlib import suppress
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from nextcord import TextChannel
@@ -47,17 +49,18 @@ class Suggestion(BaseCog):
         await message.add_reaction("❌")
         log_channel = self.bot.get_channel(955105139461607444)
         await log_channel.send(f"{str(interaction.user)} has suggested {suggestion}.")
-        await interaction.response.send_message("You can now see your suggestion in <#831425425510760478>.", ephemeral=True)
+        await interaction.send("You can now see your suggestion in <#831425425510760478>.", ephemeral=True)
     
     @_suggest.on_autocomplete("_for")
     async def _on_suggest_for_autocomplete(self, interaction, _for: str):
-        if not _for:
-            await interaction.response.send_autocomplete(self.suggestion_mode)
+        with suppress(InteractionAlreadyResponded):
+            if not _for:
+                await interaction.response.send_autocomplete(self.suggestion_mode)
         
-        nearest_mode = [
-            mode for mode in self.suggestion_mode if _for.lower().startswith(mode.lower())
-        ]
-        await interaction.response.send_autocomplete(nearest_mode)
+            nearest_mode = [
+                mode for mode in self.suggestion_mode if _for.lower().startswith(mode.lower())
+            ]
+            await interaction.response.send_autocomplete(nearest_mode)
         
     
     @_suggestion.subcommand(
@@ -71,7 +74,7 @@ class Suggestion(BaseCog):
         embed = message.embeds[0]
         embed.add_field(name=f'Denied by {str(interaction.user)}', value=why)
         await message.edit(embed=embed)
-        await interaction.response.send_message("Done.")
+        await interaction.send("Done.")
     
     @_suggestion.subcommand(
         name='approve',
@@ -85,7 +88,7 @@ class Suggestion(BaseCog):
         embed.add_field(name=f'Approved by {str(interaction.user)}', value=why)
         await message.edit(embed=embed)
 
-        await interaction.response.send_message("Done.")
+        await interaction.send("Done.")
 
 def setup(bot):
     bot.add_cog(Suggestion(bot))
