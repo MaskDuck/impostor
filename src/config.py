@@ -14,4 +14,3 @@ role1 = int(getenv("ROLE1"))
 role2 = int(getenv("ROLE2"))
 debug = bool(getenv("DEBUG"))
 pr_testing = bool(getenv("PR_TESTING"))
-
