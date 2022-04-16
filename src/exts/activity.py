@@ -2,7 +2,7 @@ from nextcord.ext import activities
 from models.basecog import BaseCog
 from nextcord import slash_command, SlashOption, VoiceChannel
 
-
+# mmlol
 class Activity(BaseCog):
     def __init__(self, bot):
         self.bot = bot
