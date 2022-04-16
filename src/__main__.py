@@ -15,7 +15,6 @@ class Impostor(commands.Bot):
         self.load_extension("exts.meta")
         self.load_extension("exts.ping")
 
-
     async def on_ready(self):
         print("SUS")
 
