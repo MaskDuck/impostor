@@ -5,7 +5,7 @@ from nextcord import Intents
 
 from dotenv import load_dotenv
 
-load_dotenv(override=True)
+load_dotenv()
 
 
 class Impostor(commands.Bot):
