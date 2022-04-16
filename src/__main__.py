@@ -21,12 +21,12 @@ class Impostor(commands.Bot):
 
 
 bot = Impostor()
-if config.debug == False:
+if not config.debug:
     from dotenv import load_dotenv
 
     load_dotenv(override=True)
 
-    if config.pr_testing == False:
+    if not config.pr_testing:
         bot.run(getenv("TOKEN"))
 
 else:
