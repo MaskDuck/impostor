@@ -1,9 +1,16 @@
+from os import getenv
 from models.basecog import BaseCog
 from nextcord import SlashOption, Embed, Colour, slash_command
 from nextcord.ext import application_checks
 from nextcord.errors import InteractionResponded
 from contextlib import suppress
 from typing import TYPE_CHECKING
+debug = True
+if debug:
+    from dotenv import load_dotenv
+
+    load_dotenv(override=True)
+
 
 if TYPE_CHECKING:
     from nextcord import TextChannel
@@ -48,15 +55,13 @@ class Suggestion(BaseCog):
                 text=f"By {str(interaction.user)} (ID {interaction.user.id})"
             )
 
-        channel = self.bot.get_channel(831425425510760478)
+        channel = self.bot.get_channel(int(getenv("SUGGESTION_CHANNEL")))
         message = await channel.send(embed=embed)
         await message.add_reaction("✅")
         await message.add_reaction("❌")
-        log_channel = self.bot.get_channel(955105139461607444)
+        log_channel = self.bot.get_channel(int(getenv("SUGGESTION_CHANNEL")))
         await log_channel.send(f"{str(interaction.user)} has suggested {suggestion}.")
-        await interaction.send(
-            "You can now see your suggestion in <#831425425510760478>.", ephemeral=True
-        )
+        await interaction.send(f'You can now see your suggestion in <#{getenv("SUGGESTION_CHANNEL")}>.', ephemeral=True)
 
     @_suggest.on_autocomplete("for_")
     async def _on_suggest_for_autocomplete(self, interaction, for_: str):
@@ -85,7 +90,7 @@ class Suggestion(BaseCog):
             name="why", description="Why did you deny this request?", required=True
         ),
     ):
-        channel = self.bot.get_channel(831425425510760478)
+        channel = self.bot.get_channel(int(getenv("SUGGESTION_CHANNEL")))
         message = await channel.fetch_message(messageId)
         embed = message.embeds[0]
         embed.add_field(name=f"Denied by {str(interaction.user)}", value=why)
@@ -106,7 +111,7 @@ class Suggestion(BaseCog):
             name="why", description="Why did you deny this request?", required=False
         ),
     ):
-        channel = self.bot.get_channel(831425425510760478)
+        channel = self.bot.get_channel(int(getenv("SUGGESTION_CHANNEL")))
         message = await channel.fetch_message(messageId)
         embed = message.embeds[0]
         embed.add_field(name=f"Approved by {str(interaction.user)}", value=why)

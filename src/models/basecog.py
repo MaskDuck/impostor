@@ -1,4 +1,11 @@
+from os import getenv
 from nextcord.ext import commands
+debug = True
+
+if debug:
+    from dotenv import load_dotenv
+
+    load_dotenv(override=True)
 
 
 class BaseCog(commands.Cog):
@@ -7,17 +14,17 @@ class BaseCog(commands.Cog):
 
     async def cog_check(self, ctx):
         return (
-            ctx.channel.id == 960446827579199488
-            or 830875873027817484 in [role.id for role in ctx.author.roles]
-            or 959723229805707285 in [role.id for role in ctx.author.roles]
+            ctx.channel.id == int(getenv("SUGGESTION_CHANNEL"))
+            or int(getenv("ROLE1")) in [role.id for role in ctx.author.roles]
+            or int(getenv("ROLE2")) in [role.id for role in ctx.author.roles]
             or self.bot.is_owner(ctx.author)
         )
 
     def cog_application_command_check(self, interaction):
         return (
-            interaction.channel.id == 960446827579199488
-            or 830875873027817484 in [role.id for role in interaction.user.roles]
-            or 959723229805707285 in [role.id for role in interaction.user.roles]
+            interaction.channel.id == int(getenv("SUGGESTION_CHANNEL"))
+            or int(getenv("ROLE1")) in [role.id for role in interaction.user.roles]
+            or int(getenv("ROLE2")) in [role.id for role in interaction.user.roles]
             or self.bot.is_owner(interaction.user)
         )
 
