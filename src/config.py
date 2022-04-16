@@ -10,8 +10,8 @@ if debug:
 
 token = getenv("TOKEN")
 suggestion_channel = int(getenv("SUGGESTION_CHANNEL"))
-role1 = int(getenv("ROLE1"))
-role2 = int(getenv("ROLE2"))
+maintainer_role1 = int(getenv("MAINTAINER_ROLE1"))
+maintainer_role2 = int(getenv("MAINTAINER_ROLE2"))
 debug = bool(getenv("DEBUG"))
 pr_testing = bool(getenv("PR_TESTING"))
 
