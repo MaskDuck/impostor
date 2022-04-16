@@ -1,4 +1,3 @@
-from tkinter import FALSE
 from nextcord.ext import commands
 from nextcord import Intents
 
