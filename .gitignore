@@ -1,4 +1,2 @@
-src/*.env
+src/.env
 __pycache__
-
-.env
