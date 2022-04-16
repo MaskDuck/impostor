@@ -1,3 +1,4 @@
 nextcord
 python-dotenv
 git+https://github.com/MaskDuck/nextcord-ext-activities@main#egg=nextcord-ext-activities
+dnspython

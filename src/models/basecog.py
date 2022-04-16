@@ -20,3 +20,6 @@ class BaseCog(commands.Cog):
             or 959723229805707285 in [role.id for role in interaction.user.roles]
             or self.bot.is_owner(interaction.user)
         )
+
+
+

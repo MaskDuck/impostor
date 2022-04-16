@@ -22,4 +22,8 @@ class Impostor(commands.Bot):
 from os import getenv
 
 bot = Impostor()
-bot.run(getenv("TOKEN"))
+if debug == False:
+    if getenv("PR_TESTING") == 0:
+        bot.run(getenv("TOKEN"))
+else:
+    bot.run(getenv("TOKEN"))
