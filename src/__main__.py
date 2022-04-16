@@ -1,7 +1,8 @@
+from tkinter import FALSE
 from nextcord.ext import commands
 from nextcord import Intents
 
-debug = True
+debug = False
 
 if debug:
     from dotenv import load_dotenv
