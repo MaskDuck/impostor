@@ -1,3 +1,4 @@
+from os import getenv
 from nextcord.ext import commands
 from nextcord import Intents
 import config
@@ -13,9 +14,17 @@ class Impostor(commands.Bot):
         print("SUS")
 
 
+debug = True
+
+if debug:
+    from dotenv import load_dotenv
+
+    load_dotenv(override=True)
+
+
 bot = Impostor()
 if config.debug == False:
     if config.pr_testing == False:
-        bot.run(config.token)
+        bot.run(getenv("TOKEN"))
 else:
-    bot.run(config.token)
+    bot.run(getenv("TOKEN"))
