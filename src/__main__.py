@@ -18,6 +18,7 @@ class Impostor(commands.Bot):
     async def on_ready(self):
         print("SUS")
 
+
 bot = Impostor()
 if config.debug == False:
     if config.pr_testing == False:
