@@ -6,45 +6,66 @@ from nextcord import slash_command, SlashOption, VoiceChannel
 class Activity(BaseCog):
     def __init__(self, bot):
         self.bot = bot
-    
-    @slash_command(name='activity')
+
+    @slash_command(name="activity")
     async def _activity(self):
         pass
 
-    @_activity.subcommand(
-        name='betrayal',
-        description = "Play some Betrayal.io."
-    )
-    async def betrayal(self, interaction, channel: VoiceChannel = SlashOption(name='channel', description = "the channel you want to play this game in")):
+    @_activity.subcommand(name="betrayal", description="Play some Betrayal.io.")
+    async def betrayal(
+        self,
+        interaction,
+        channel: VoiceChannel = SlashOption(
+            name="channel", description="the channel you want to play this game in"
+        ),
+    ):
         invite = await channel.create_activity_invite(activities.Activity.betrayal)
         await interaction.send(invite)
-    
-    @_activity.subcommand(
-        name='fishington',
-        description='play some fishington.'
-    )
-    async def fishington(self, interaction, channel: VoiceChannel = SlashOption(name='channel', description = "the channel you want to play this game in")):
+
+    @_activity.subcommand(name="fishington", description="play some fishington.")
+    async def fishington(
+        self,
+        interaction,
+        channel: VoiceChannel = SlashOption(
+            name="channel", description="the channel you want to play this game in"
+        ),
+    ):
         invite = await channel.create_activity_invite(activities.Activity.fishington)
         await interaction.send(invite)
-    
-    @_activity.subcommand(
-        name='youtube',
-        description='watch some youtube.'
-    )
-    async def youtube(self, interaction, channel: VoiceChannel = SlashOption(name='channel', description = "the channel you want to play this game in")):
+
+    @_activity.subcommand(name="youtube", description="watch some youtube.")
+    async def youtube(
+        self,
+        interaction,
+        channel: VoiceChannel = SlashOption(
+            name="channel", description="the channel you want to play this game in"
+        ),
+    ):
         invite = await channel.create_activity_invite(activities.Activity.youtube)
         await interaction.send(invite)
-    
-    @_activity.subcommand(description='play sketch heads!')
-    async def sketch(self, interaction, channel: VoiceChannel = SlashOption(name='channel', description = "the channel you want to play this game in")):
+
+    @_activity.subcommand(description="play sketch heads!")
+    async def sketch(
+        self,
+        interaction,
+        channel: VoiceChannel = SlashOption(
+            name="channel", description="the channel you want to play this game in"
+        ),
+    ):
         invite = await channel.create_activity_invite(activities.Activity.sketch)
         await interaction.send(invite)
-    
-    @_activity.subcommand(name='word-snacks', description='play some word snacks')
-    async def word_snacks(self, interaction, channel: VoiceChannel = SlashOption(name='channel', description = "the channel you want to play this game in")):
+
+    @_activity.subcommand(name="word-snacks", description="play some word snacks")
+    async def word_snacks(
+        self,
+        interaction,
+        channel: VoiceChannel = SlashOption(
+            name="channel", description="the channel you want to play this game in"
+        ),
+    ):
         invite = await channel.create_activity_invite(activities.Activity.word_snacks)
         await interaction.send(invite)
 
+
 def setup(bot):
     bot.add_cog(Activity(bot))
-    
