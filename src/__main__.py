@@ -2,6 +2,7 @@ from nextcord.ext import commands
 from nextcord import Intents
 import config
 
+
 class Impostor(commands.Bot):
     def __init__(self):
         super().__init__(command_prefix="sus ", intents=Intents.all())
@@ -10,6 +11,7 @@ class Impostor(commands.Bot):
 
     async def on_ready(self):
         print("SUS")
+
 
 bot = Impostor()
 if config.debug == False:

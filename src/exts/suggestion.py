@@ -55,7 +55,10 @@ class Suggestion(BaseCog):
         await message.add_reaction("❌")
         log_channel = self.bot.get_channel(config.suggestion_channel)
         await log_channel.send(f"{str(interaction.user)} has suggested {suggestion}.")
-        await interaction.send(f'You can now see your suggestion in <#{config.suggestion_channel}>.', ephemeral=True)
+        await interaction.send(
+            f"You can now see your suggestion in <#{config.suggestion_channel}>.",
+            ephemeral=True,
+        )
 
     @_suggest.on_autocomplete("for_")
     async def _on_suggest_for_autocomplete(self, interaction, for_: str):

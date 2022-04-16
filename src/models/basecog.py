@@ -1,6 +1,7 @@
 from nextcord.ext import commands
 import config
 
+
 class BaseCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -20,6 +21,3 @@ class BaseCog(commands.Cog):
             or config.role2 in [role.id for role in interaction.user.roles]
             or self.bot.is_owner(interaction.user)
         )
-
-
-
