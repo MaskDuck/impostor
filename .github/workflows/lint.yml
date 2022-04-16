@@ -2,8 +2,8 @@ on:
   pull_request:
 
 jobs:
-  build:
-    name: Build bot
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
