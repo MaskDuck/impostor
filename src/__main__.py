@@ -1,7 +1,7 @@
 from nextcord.ext import commands
 from nextcord import Intents
 
-debug = False
+debug = True
 
 if debug:
     from dotenv import load_dotenv

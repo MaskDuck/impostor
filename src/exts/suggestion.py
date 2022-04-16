@@ -25,14 +25,14 @@ class Suggestion(BaseCog):
     async def _suggest(
         self,
         interaction,
-        _for: str = SlashOption(
+        for_: str = SlashOption(
             name="for", description="What do you want to suggest for?", required=True
         ),
         suggestion: str = SlashOption(
             name="suggestion", description="Write your suggestion here.", required=True
         ),
     ):
-        if _for == "the server":
+        if for_ == "the server":
             embed = Embed(
                 title="Server Suggestion", description=suggestion, colour=Colour.red()
             )
@@ -40,7 +40,7 @@ class Suggestion(BaseCog):
                 text=f"By {str(interaction.user)} (ID {interaction.user.id})"
             )
 
-        if _for == "the service":
+        if for_ == "the service":
             embed = Embed(
                 title="Service Suggestion", description=suggestion, colour=Colour.red()
             )
@@ -58,16 +58,16 @@ class Suggestion(BaseCog):
             "You can now see your suggestion in <#831425425510760478>.", ephemeral=True
         )
 
-    @_suggest.on_autocomplete("_for")
-    async def _on_suggest_for_autocomplete(self, interaction, _for: str):
+    @_suggest.on_autocomplete("for_")
+    async def _on_suggest_for_autocomplete(self, interaction, for_: str):
         with suppress(InteractionResponded):
-            if not _for:
+            if not for_:
                 await interaction.response.send_autocomplete(self.suggestion_mode)
 
             nearest_mode = [
                 mode
                 for mode in self.suggestion_mode
-                if _for.lower().startswith(mode.lower())
+                if for_.lower().startswith(mode.lower())
             ]
             await interaction.response.send_autocomplete(nearest_mode)
 
