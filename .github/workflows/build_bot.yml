@@ -1,5 +1,7 @@
+name: "Build Bot"
 on:
   pull_request:
+  push:
 
 jobs:
   build:
@@ -9,15 +11,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       
-      - name: Install dependencies
-        id: install-deps
-        run: |
-          python3 -m pip install -r requirements.txt
       - name: Setup python
         id: python
         uses: actions/setup-python@v2
         with:
           python-version: '3.9'
+          
+      - name: Install dependencies
+        id: install-deps
+        run: |
+          python3 -m pip install -r requirements.txt
       
       - name: Build bot
         run: "python3 src"
