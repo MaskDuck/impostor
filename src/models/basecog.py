@@ -1,3 +1,4 @@
+from os import getenv
 from nextcord.ext import commands
 import config
 

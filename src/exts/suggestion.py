@@ -1,3 +1,4 @@
+from os import getenv
 from models.basecog import BaseCog
 from nextcord import SlashOption, Embed, Colour, slash_command
 from nextcord.ext import application_checks
