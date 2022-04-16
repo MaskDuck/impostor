@@ -17,7 +17,9 @@ class Activity(BaseCog):
         self,
         interaction: Interaction,
         channel: GuildChannel = SlashOption(
-            name="channel", description="the channel you want to play this game in", channel_types=[ChannelType.voice]
+            name="channel",
+            description="the channel you want to play this game in",
+            channel_types=[ChannelType.voice],
         ),
     ):
         invite = await channel.create_activity_invite(activities.Activity.betrayal)
@@ -28,7 +30,9 @@ class Activity(BaseCog):
         self,
         interaction: Interaction,
         channel: GuildChannel = SlashOption(
-            name="channel", description="the channel you want to play this game in", channel_types=[ChannelType.voice]
+            name="channel",
+            description="the channel you want to play this game in",
+            channel_types=[ChannelType.voice],
         ),
     ):
         invite = await channel.create_activity_invite(activities.Activity.fishington)
@@ -39,7 +43,9 @@ class Activity(BaseCog):
         self,
         interaction: Interaction,
         channel: GuildChannel = SlashOption(
-            name="channel", description="the channel you want to play this game in", channel_types=[ChannelType.voice]
+            name="channel",
+            description="the channel you want to play this game in",
+            channel_types=[ChannelType.voice],
         ),
     ):
         invite = await channel.create_activity_invite(activities.Activity.youtube)
@@ -50,7 +56,9 @@ class Activity(BaseCog):
         self,
         interaction: Interaction,
         channel: GuildChannel = SlashOption(
-            name="channel", description="the channel you want to play this game in", channel_types=[ChannelType.voice]
+            name="channel",
+            description="the channel you want to play this game in",
+            channel_types=[ChannelType.voice],
         ),
     ):
         invite = await channel.create_activity_invite(activities.Activity.sketch)
@@ -61,7 +69,9 @@ class Activity(BaseCog):
         self,
         interaction: Interaction,
         channel: GuildChannel = SlashOption(
-            name="channel", description="the channel you want to play this game in", channel_types=[ChannelType.voice]
+            name="channel",
+            description="the channel you want to play this game in",
+            channel_types=[ChannelType.voice],
         ),
     ):
         invite = await channel.create_activity_invite(activities.Activity.word_snacks)

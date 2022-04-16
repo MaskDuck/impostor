@@ -17,7 +17,7 @@ class Suggestion(BaseCog):
     suggestion_mode = ["the server", "the service"]
 
     @slash_command(name="suggestion")
-    async def _suggestion(self, interaction: Interaction ):
+    async def _suggestion(self, interaction: Interaction):
         pass
 
     @_suggestion.subcommand(
@@ -101,7 +101,7 @@ class Suggestion(BaseCog):
     async def _approve(
         self,
         interaction: Interaction,
-        messageId: str =SlashOption(
+        messageId: str = SlashOption(
             name="message_id", description="Message to approve", required=True
         ),
         why: str = SlashOption(
