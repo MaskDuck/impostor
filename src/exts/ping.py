@@ -1,5 +1,5 @@
 from models.basecog import BaseCog
-from nextcord import slash_command
+from nextcord import Interaction, slash_command
 
 
 class Ping(BaseCog):
@@ -7,7 +7,7 @@ class Ping(BaseCog):
         self.bot = bot
 
     @slash_command(name="pong")
-    async def ping(self, interaction):
+    async def ping(self, interaction: Interaction):
         await interaction.send("pong")
 
 

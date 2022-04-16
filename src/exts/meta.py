@@ -1,5 +1,5 @@
 from models.basecog import BaseCog
-from nextcord import slash_command
+from nextcord import slash_command, Interaction
 
 
 class Meta(BaseCog):
@@ -7,11 +7,11 @@ class Meta(BaseCog):
         self.bot = bot
 
     @slash_command(name="meta")
-    async def _meta(self, interaction):
+    async def _meta(self, interaction: Interaction):
         pass
 
     @_meta.subcommand(description="show the bot source code")
-    async def source(self, interaction):
+    async def source(self, interaction: Interaction):
         await interaction.send("https://github.com/MaskDuck/impostor-helper-bot")
 
 
