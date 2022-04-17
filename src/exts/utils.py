@@ -16,6 +16,10 @@ class Utils(BaseCog):
             or 959723229805707285 in [role.id for role in interaction.user.roles]
             or self.bot.is_owner(interaction.user)
         )
+    
+    @commands.command(hidden=True)
+    async def close(self, ctx):
+        await self.bot.close()
 
     @slash_command(name="getdns")
     async def _getdns(self, interaction: Interaction):
