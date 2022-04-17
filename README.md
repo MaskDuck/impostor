@@ -1,5 +1,5 @@
 # impostor-helper-bot
-It is a sussy bot power all of the sussy member in the is-a.dev server.
+It is a sussy bot power all of the sussy members in the is-a.dev server.
 
 # How to run
 1. Add env (see `.env.example` to see example config)
