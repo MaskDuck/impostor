@@ -18,6 +18,7 @@ class Utils(BaseCog):
         )
     
     @commands.command(hidden=True)
+    @commands.is_owner()
     async def close(self, ctx):
         await self.bot.close()
 
