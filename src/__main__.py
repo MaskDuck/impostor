@@ -20,13 +20,7 @@ class Impostor(commands.Bot):
 
 
 bot = Impostor()
-if not config.debug:
-    from dotenv import load_dotenv
-
-    load_dotenv(override=True)
-
-    if not config.pr_testing:
-        bot.run(getenv("TOKEN"))
-
-else:
+if not config.pr_testing:
     bot.run(getenv("TOKEN"))
+else:
+    print("More SUS")
