@@ -2,7 +2,6 @@ from nextcord.ext import commands
 from nextcord import Intents
 
 
-
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -15,7 +14,7 @@ class Impostor(commands.Bot):
         self.load_extension("exts.meta")
         self.load_extension("exts.ping")
         self.load_extension("exts.utils")
-
+        self.load_extension("exts.activity")
 
     async def on_ready(self):
         print("SUS")

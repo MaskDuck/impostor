@@ -2,3 +2,4 @@ nextcord
 python-dotenv
 dnspython
 jishaku
+nextcord-ext-activities
