@@ -1,4 +1,4 @@
-# impostor-helper-bot
+# Impostor
 It is a sussy bot power all of the sussy members in the is-a.dev server.
 
 # How to run
