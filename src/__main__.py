@@ -25,5 +25,5 @@ from os import getenv
 
 bot = Impostor()
 
-if int(getenv("PR_TESTING")) in [0, None]:
+if getenv("PR_TESTING") in ["0", None]:
     bot.run(getenv("TOKEN"))
