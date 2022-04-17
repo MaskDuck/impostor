@@ -1,9 +1,10 @@
 from models.basecog import BaseCog
-from nextcord import slash_command, Interaction, Client
+from nextcord.ext import commands
+from nextcord import slash_command, Interaction
 
 
 class Meta(BaseCog):
-    def __init__(self, bot: Client):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     @slash_command(name="meta")

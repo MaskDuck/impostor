@@ -1,18 +1,11 @@
-from nextcord.ext import activities
+from nextcord.ext import activities, commands
 from models.basecog import BaseCog
-from nextcord import (
-    slash_command,
-    SlashOption,
-    VoiceChannel,
-    Interaction,
-    ChannelType,
-    Client,
-)
+from nextcord import slash_command, SlashOption, Interaction, ChannelType
 from nextcord.abc import GuildChannel
 
 
 class Activity(BaseCog):
-    def __init__(self, bot: Client):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     @slash_command(name="activity")

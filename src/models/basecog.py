@@ -1,9 +1,9 @@
 from nextcord.ext import commands
-from nextcord import Interaction, Client
+from nextcord import Interaction
 
 
 class BaseCog(commands.Cog):
-    def __init__(self, bot: Client):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     async def cog_check(self, ctx):

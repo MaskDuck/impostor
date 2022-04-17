@@ -1,10 +1,11 @@
 from models.basecog import BaseCog
-from nextcord import slash_command, SlashOption, Embed, Interaction, Client
+from nextcord.ext import commands
+from nextcord import slash_command, SlashOption, Embed, Interaction
 from dns import resolver
 
 
 class Utils(BaseCog):
-    def __init__(self, bot: Client):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     def cog_application_command_check(self, interaction: Interaction):

@@ -1,9 +1,10 @@
 from models.basecog import BaseCog
-from nextcord import Interaction, slash_command, Client
+from nextcord.ext import commands
+from nextcord import Interaction, slash_command
 
 
 class Ping(BaseCog):
-    def __init__(self, bot: Client):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     @slash_command(name="pong")
