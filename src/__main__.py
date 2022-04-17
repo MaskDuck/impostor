@@ -15,19 +15,14 @@ class Impostor(commands.Bot):
         self.load_extension("exts.meta")
         self.load_extension("exts.activity")
         self.load_extension("exts.ping")
+        self.load_extension("exts.utils")
 
     async def on_ready(self):
         print("SUS")
 
 
 bot = Impostor()
-if not config.debug:
-    from dotenv import load_dotenv
-
-    load_dotenv(override=True)
-
-    if not config.pr_testing:
-        bot.run(getenv("TOKEN"))
-
-else:
+if not config.pr_testing:
     bot.run(getenv("TOKEN"))
+else:
+    print("More SUS")
