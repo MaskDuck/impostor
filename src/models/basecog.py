@@ -1,8 +1,9 @@
 from nextcord.ext import commands
+from nextcord import Interaction
 
 
 class BaseCog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     async def cog_check(self, ctx):
@@ -13,7 +14,7 @@ class BaseCog(commands.Cog):
             or self.bot.is_owner(ctx.author)
         )
 
-    def cog_application_command_check(self, interaction):
+    def cog_application_command_check(self, interaction: Interaction):
         return (
             interaction.channel.id == 960446827579199488
             or 830875873027817484 in [role.id for role in interaction.user.roles]

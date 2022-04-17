@@ -1,6 +1,6 @@
 from models.basecog import BaseCog
-from nextcord import SlashOption, Embed, Colour, slash_command
-from nextcord.ext import application_checks
+from nextcord import SlashOption, Embed, Colour, slash_command, Interaction
+from nextcord.ext import application_checks, commands
 from nextcord.errors import InteractionResponded
 from contextlib import suppress
 from typing import TYPE_CHECKING
@@ -10,13 +10,13 @@ if TYPE_CHECKING:
 
 
 class Suggestion(BaseCog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     suggestion_mode = ["the server", "the service"]
 
     @slash_command(name="suggestion")
-    async def _suggestion(self, interaction):
+    async def _suggestion(self, interaction: Interaction):
         pass
 
     @_suggestion.subcommand(
@@ -24,7 +24,7 @@ class Suggestion(BaseCog):
     )
     async def _suggest(
         self,
-        interaction,
+        interaction: Interaction,
         for_: str = SlashOption(
             name="for", description="What do you want to suggest for?", required=True
         ),
@@ -59,7 +59,7 @@ class Suggestion(BaseCog):
         )
 
     @_suggest.on_autocomplete("for_")
-    async def _on_suggest_for_autocomplete(self, interaction, for_: str):
+    async def _on_suggest_for_autocomplete(self, interaction: Interaction, for_: str):
         with suppress(InteractionResponded):
             if not for_:
                 await interaction.response.send_autocomplete(self.suggestion_mode)
@@ -77,7 +77,7 @@ class Suggestion(BaseCog):
     @application_checks.has_permissions(administrator=True)
     async def _deny(
         self,
-        interaction,
+        interaction: Interaction,
         messageId=SlashOption(
             name="message_id", description="Message to deny", required=True
         ),
@@ -98,8 +98,8 @@ class Suggestion(BaseCog):
     @application_checks.has_permissions(administrator=True)
     async def _approve(
         self,
-        interaction,
-        messageId=SlashOption(
+        interaction: Interaction,
+        messageId: str = SlashOption(
             name="message_id", description="Message to approve", required=True
         ),
         why: str = SlashOption(
