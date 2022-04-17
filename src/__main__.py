@@ -23,5 +23,3 @@ class Impostor(commands.Bot):
 bot = Impostor()
 if not config.pr_testing:
     bot.run(getenv("TOKEN"))
-else:
-    print("More SUS")
