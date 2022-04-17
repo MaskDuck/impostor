@@ -14,6 +14,7 @@ class Impostor(commands.Bot):
         self.load_extension("exts.suggestion")
         self.load_extension("exts.meta")
         self.load_extension("exts.ping")
+        self.load_extension("exts.utils")
 
 
     async def on_ready(self):
@@ -24,5 +25,5 @@ from os import getenv
 
 bot = Impostor()
 
-if getenv("PR_TESTING") == 1:
+if int(getenv("PR_TESTING")) in [0, None]:
     bot.run(getenv("TOKEN"))
