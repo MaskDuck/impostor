@@ -18,9 +18,6 @@ class Utils(BaseCog):
             or self.bot.is_owner(interaction.user)
         )
 
-    @slash_command(name="getdns")
-    async def _getdns(self, interaction):
-    
     @commands.command(hidden=True)
     @commands.is_owner()
     async def close(self, ctx):
