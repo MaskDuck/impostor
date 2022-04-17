@@ -1,9 +1,10 @@
 from nextcord.ext import commands
+from nextcord import Interaction
 import config
 
 
 class BaseCog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     async def cog_check(self, ctx):
@@ -14,7 +15,7 @@ class BaseCog(commands.Cog):
             or self.bot.is_owner(ctx.author)
         )
 
-    def cog_application_command_check(self, interaction):
+    def cog_application_command_check(self, interaction: Interaction):
         return (
             interaction.channel.id == config.suggestion_channel
             or config.maintainer_role in [role.id for role in interaction.user.roles]
