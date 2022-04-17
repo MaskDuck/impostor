@@ -1,14 +1,14 @@
 from models.basecog import BaseCog
-from nextcord import slash_command, SlashOption, Embed
+from nextcord import slash_command, SlashOption, Embed, Interaction, Client
 from dns import resolver
 import config
 
 
 class Utils(BaseCog):
-    def __init__(self, bot):
+    def __init__(self, bot: Client):
         self.bot = bot
 
-    def cog_application_command_check(self, interaction):
+    def cog_application_command_check(self, interaction: Interaction):
         return (
             interaction.channel.id == config.bot_channel
             or interaction.channel.id == config.help_channel
@@ -18,13 +18,13 @@ class Utils(BaseCog):
         )
 
     @slash_command(name="getdns")
-    async def _getdns(self, interaction):
+    async def _getdns(self, interaction: Interaction):
         pass
 
     @_getdns.subcommand(description="get cname of a domain")
     async def cname(
         self,
-        interaction,
+        interaction: Interaction,
         domain: str = SlashOption(
             name="domain", description="The domain you want to fetch description of"
         ),

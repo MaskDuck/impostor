@@ -1,5 +1,5 @@
 from models.basecog import BaseCog
-from nextcord import SlashOption, Embed, Colour, slash_command, Interaction
+from nextcord import SlashOption, Embed, Colour, slash_command, Interaction, Client
 from nextcord.ext import application_checks
 from nextcord.errors import InteractionResponded
 from contextlib import suppress
@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 
 class Suggestion(BaseCog):
-    def __init__(self, bot):
+    def __init__(self, bot: Client):
         self.bot = bot
 
     suggestion_mode = ["the server", "the service"]
