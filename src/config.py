@@ -1,12 +1,7 @@
 from os import getenv
+from dotenv import load_dotenv
 
-debug = True
-
-if debug:
-    from dotenv import load_dotenv
-
-    load_dotenv(override=True)
-
+load_dotenv()
 
 # token = getenv("TOKEN")
 suggestion_channel = int(831425425510760478)
