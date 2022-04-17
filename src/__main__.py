@@ -26,5 +26,3 @@ bot = Impostor()
 
 if getenv("PR_TESTING") == 0:
     bot.run(getenv("TOKEN"))
-else:
-    bot.run(getenv("TOKEN"))
