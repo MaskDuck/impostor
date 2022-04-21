@@ -2,6 +2,7 @@ from models.basecog import BaseCog
 from nextcord.ext import commands
 from nextcord import slash_command, SlashOption, Embed, Interaction
 from dns import resolver
+import config
 
 
 class Utils(BaseCog):
@@ -10,13 +11,13 @@ class Utils(BaseCog):
 
     def cog_application_command_check(self, interaction: Interaction):
         return (
-            interaction.channel.id == 960446827579199488
-            or interaction.channel.id == 946105325914828840
-            or 830875873027817484 in [role.id for role in interaction.user.roles]
-            or 959723229805707285 in [role.id for role in interaction.user.roles]
+            interaction.channel.id == config.bot_channel
+            or interaction.channel.id == config.help_channel
+            or config.maintainer_role in [role.id for role in interaction.user.roles]
+            or config.maintainer_role in [role.id for role in interaction.user.roles]
             or self.bot.is_owner(interaction.user)
         )
-    
+
     @commands.command(hidden=True)
     @commands.is_owner()
     async def close(self, ctx):

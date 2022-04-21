@@ -4,6 +4,7 @@ from nextcord.ext import application_checks, commands
 from nextcord.errors import InteractionResponded
 from contextlib import suppress
 from typing import TYPE_CHECKING
+import config
 
 if TYPE_CHECKING:
     from nextcord import TextChannel
@@ -48,14 +49,15 @@ class Suggestion(BaseCog):
                 text=f"By {str(interaction.user)} (ID {interaction.user.id})"
             )
 
-        channel = self.bot.get_channel(831425425510760478)
+        channel = self.bot.get_channel(config.suggestion_channel)
         message = await channel.send(embed=embed)
         await message.add_reaction("✅")
         await message.add_reaction("❌")
-        log_channel = self.bot.get_channel(955105139461607444)
+        log_channel = self.bot.get_channel(config.suggestion_channel)
         await log_channel.send(f"{str(interaction.user)} has suggested {suggestion}.")
         await interaction.send(
-            "You can now see your suggestion in <#831425425510760478>.", ephemeral=True
+            f"You can now see your suggestion in <#{config.suggestion_channel}>.",
+            ephemeral=True,
         )
 
     @_suggest.on_autocomplete("for_")
@@ -85,7 +87,7 @@ class Suggestion(BaseCog):
             name="why", description="Why did you deny this request?", required=True
         ),
     ):
-        channel = self.bot.get_channel(831425425510760478)
+        channel = self.bot.get_channel(config.suggestion_channel)
         message = await channel.fetch_message(messageId)
         embed = message.embeds[0]
         embed.add_field(name=f"Denied by {str(interaction.user)}", value=why)
@@ -106,7 +108,7 @@ class Suggestion(BaseCog):
             name="why", description="Why did you deny this request?", required=False
         ),
     ):
-        channel = self.bot.get_channel(831425425510760478)
+        channel = self.bot.get_channel(config.suggestion_channel)
         message = await channel.fetch_message(messageId)
         embed = message.embeds[0]
         embed.add_field(name=f"Approved by {str(interaction.user)}", value=why)

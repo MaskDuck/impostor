@@ -1,5 +1,6 @@
 from nextcord.ext import commands
 from nextcord import Interaction
+import config
 
 
 class BaseCog(commands.Cog):
@@ -8,16 +9,16 @@ class BaseCog(commands.Cog):
 
     async def cog_check(self, ctx):
         return (
-            ctx.channel.id == 960446827579199488
-            or 830875873027817484 in [role.id for role in ctx.author.roles]
-            or 959723229805707285 in [role.id for role in ctx.author.roles]
+            ctx.channel.id == config.suggestion_channel
+            or config.maintainer_role in [role.id for role in ctx.author.roles]
+            or config.admin_role in [role.id for role in ctx.author.roles]
             or self.bot.is_owner(ctx.author)
         )
 
     def cog_application_command_check(self, interaction: Interaction):
         return (
-            interaction.channel.id == 960446827579199488
-            or 830875873027817484 in [role.id for role in interaction.user.roles]
-            or 959723229805707285 in [role.id for role in interaction.user.roles]
+            interaction.channel.id == config.suggestion_channel
+            or config.maintainer_role in [role.id for role in interaction.user.roles]
+            or config.admin_role in [role.id for role in interaction.user.roles]
             or self.bot.is_owner(interaction.user)
         )
