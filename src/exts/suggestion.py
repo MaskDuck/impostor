@@ -1,3 +1,4 @@
+from __future__ import annotations
 from models.basecog import BaseCog
 from nextcord import SlashOption, Embed, Colour, slash_command, Interaction
 from nextcord.ext import application_checks, commands
