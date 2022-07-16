@@ -13,7 +13,7 @@ class Meta(BaseCog):
 
     @_meta.subcommand(description="show the bot source code")
     async def source(self, interaction: Interaction):
-        await interaction.send("https://github.com/MaskDuck/impostor-helper-bot")
+        await interaction.send("https://github.com/MaskDuck/impostor")
 
 
 def setup(bot):
