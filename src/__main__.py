@@ -15,6 +15,7 @@ class Impostor(commands.Bot):
         self.load_extension("exts.ping")
         self.load_extension("exts.utils")
         self.load_extension("exts.activity")
+        self.load_extension("exts.bans")
 
     async def on_ready(self):
         print("SUS")
