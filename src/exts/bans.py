@@ -109,7 +109,7 @@ class BanState(View):
         #print(interaction.message.mentions)
         user_to_unban = interaction.message.mentions[0]
         await interaction.guild.unban(user_to_unban)
-        unbanned_channel = interaction.guild.get_channel(UNBANNED_CHANNEL_ID)
+        unbanned_channel = interaction.client.get_channel(UNBANNED_CHANNEL_ID)
         await unbanned_channel.send("{}, you have been unbanned.".format(user_to_unban.mention))
         await user_to_unban.send("{}, you have been unbanned.".format(user_to_unban.mention))
         await interaction.send("done")
