@@ -76,7 +76,7 @@ class AppealModal(Modal):
             description="Sent by {} (ID {})".format(str(interaction.user), interaction.user.id),
             color=Color.blurple(),
             ).add_field(name='Inputted reason', value= self.__reason.value).add_field(name="Actual banned reason", value=ban_reason).add_field(name='Deserved ban, according to the user', value=self.__deserve.value).add_field(name='Improvement to not being banned again', value=self.__improvement.value).add_field(name='Why to unban', value=self.__why.value)
-        await appeal_channel.send(content=interaction.user.mention, embed=embed, allowed_mentions=AllowedMentions(users=False), view=BanState())
+        await appeal_channel.send(content=interaction.user.mention, embed=embed, view=BanState())
         await interaction.send("Appealed. You'll get your status of your appeal in <#{}>".format(UNBANNED_CHANNEL_ID), ephemeral=True)
 
 class AppealView(View):
