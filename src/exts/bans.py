@@ -74,7 +74,7 @@ class AppealModal(Modal):
         embed = Embed(
             title='New Ban Appeal',
             description="Sent by {} (ID {})".format(str(interaction.user), interaction.user.id),
-            color=Color.blurple,
+            color=Color.blurple(),
             ).add_field(name='Inputted reason', value= self.__reason.value).add_field(name="Actual banned reason", value=ban_reason).add_field(name='Deserved ban, according to the user', value=self.__deserve.value).add_field(name='Improvement to not being banned again', value=self.__improvement.value).add_field(name='Why to unban', value=self.__why.value)
         await appeal_channel.send(content=interaction.user.mention, embed=embed, allowed_mentions=AllowedMentions(users=False), view=BanState())
         await interaction.send("Appealed. You'll get your status of your appeal in <#{}>".format(UNBANNED_CHANNEL_ID), ephemeral=True)
@@ -85,7 +85,7 @@ class AppealView(View):
     
     @button_decorator(label="Appeal", custom_id='banappeal')
     async def _appeal(self, button: Button, interaction: Interaction):
-        await interaction.send_modal(AppealModal())
+        await interaction.response.send_modal(AppealModal())
 
 class BanState(View):
     def __init__(self):
@@ -104,21 +104,25 @@ class BanState(View):
         return interaction.user.guild_permissions.administrator is True
     
     @button_decorator(label='Approve', style=ButtonStyle.success, custom_id='banappealapproe')
-    async def _approve(self, interaction: Interaction, button: Button):
+    async def _approve(self, button: Button, interaction: Interaction):
+        print(interaction.message.content)
+        print(interaction.message.mentions)
         user_to_unban = interaction.message.mentions[0]
         await interaction.guild.unban(user_to_unban)
         unbanned_channel = interaction.guild.get_channel(UNBANNED_CHANNEL_ID)
         await unbanned_channel.send("{}, you have been unbanned.".format(user_to_unban.mention))
         await user_to_unban.send("{}, you have been unbanned.".format(user_to_unban.mention))
+        await interaction.send("done")
         await self._after_invoke(interaction)
         
     
     @button_decorator(label='Deny', style=ButtonStyle.danger, custom_id="banappealdenial")
-    async def _deny(self, interaction: Interaction, button: Button):
+    async def _deny(self, button: Button, interaction: Interaction):
         user_to_unban = interaction.message.mentions[0]
         unbanned_channel = interaction.guild.get_channel(UNBANNED_CHANNEL_ID)
         await unbanned_channel.send("{}, your appeal has been denied.".format(user_to_unban.mention))
         await user_to_unban.send("{}, your appeal has been denied.".format(user_to_unban.mention))
+        await interaction.send("done")
 
 class Ban(BaseCog):
     def __init__(self, bot):
