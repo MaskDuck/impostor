@@ -105,8 +105,8 @@ class BanState(View):
     
     @button_decorator(label='Approve', style=ButtonStyle.success, custom_id='banappealapproe')
     async def _approve(self, button: Button, interaction: Interaction):
-        print(interaction.message.content)
-        print(interaction.message.mentions)
+        #print(interaction.message.content)
+        #print(interaction.message.mentions)
         user_to_unban = interaction.message.mentions[0]
         await interaction.guild.unban(user_to_unban)
         unbanned_channel = interaction.guild.get_channel(UNBANNED_CHANNEL_ID)
