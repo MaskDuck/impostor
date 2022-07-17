@@ -91,7 +91,7 @@ class BanState(View):
     def __init__(self):
         super().__init__()
     
-    async def _after_invoke(self, interaction, state):
+    async def _after_invoke(self, interaction):
         for child in self.children:
             child.disabled = True
         
