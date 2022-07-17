@@ -81,7 +81,7 @@ class AppealModal(Modal):
 
 class AppealView(View):
     def __init__(self):
-        super().__init__()
+        super().__init__(timeout=None)
     
     @button_decorator(label="Appeal", custom_id='banappeal')
     async def _appeal(self, button: Button, interaction: Interaction):
@@ -89,7 +89,7 @@ class AppealView(View):
 
 class BanState(View):
     def __init__(self):
-        super().__init__()
+        super().__init__(timeout=None)
     
     async def _after_invoke(self, interaction):
         for child in self.children:
