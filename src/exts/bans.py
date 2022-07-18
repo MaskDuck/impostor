@@ -149,7 +149,7 @@ class BanState(View):
             "{}, you have been unbanned.".format(user_to_unban.mention)
         )
         await interaction.send("done", ephemeral=True)
-        await self._after_invoke(interaction)
+        await self._after_invoke(interaction, True)
 
     @button_decorator(
         label="Deny", style=ButtonStyle.danger, custom_id="banappealdenial"
@@ -164,6 +164,7 @@ class BanState(View):
             "{}, your appeal has been denied.".format(user_to_unban.mention)
         )
         await interaction.send("done", ephemeral=True)
+        await self._after_invoke(interaction, False)
 
 
 class Ban(BaseCog):
