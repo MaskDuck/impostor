@@ -153,7 +153,7 @@ class BanState(View):
     )
     async def _deny(self, button: Button, interaction: Interaction):
         user_to_unban = interaction.message.mentions[0]
-        unbanned_channel = interaction.guild.get_channel(UNBANNED_CHANNEL_ID)
+        unbanned_channel = interaction.client.get_channel(UNBANNED_CHANNEL_ID)
         await unbanned_channel.send(
             "{}, your appeal has been denied.".format(user_to_unban.mention)
         )
