@@ -13,7 +13,6 @@ from nextcord import (
     Embed,
     Color,
     NotFound,
-    AllowedMentions,
     ButtonStyle,
 )
 
