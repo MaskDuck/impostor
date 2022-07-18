@@ -14,6 +14,7 @@ from nextcord import (
     Color,
     NotFound,
     ButtonStyle,
+    Permissions
 )
 
 if TYPE_CHECKING:
@@ -119,13 +120,15 @@ class BanState(View):
     def __init__(self):
         super().__init__(timeout=None)
 
-    async def _after_invoke(self, interaction):
+    async def _after_invoke(self, interaction, state):
         for child in self.children:
             child.disabled = True
 
         embed: Embed = interaction.message.embeds[0]
 
-        await interaction.message.edit(view=self)
+        embed.color = Color.green() if state else Color.red()
+
+        await interaction.message.edit(view=None, embed=embed)
 
     async def interaction_check(self, interaction):
         return interaction.user.guild_permissions.administrator is True
@@ -176,6 +179,7 @@ class Ban(BaseCog):
     async def on_ready(self):
         self.bot.add_view(AppealView())
         self.bot.add_view(BanState())
+
 
 
 def setup(bot):
