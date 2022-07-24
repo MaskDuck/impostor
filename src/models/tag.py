@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 
 import typing_extensions
 
-from requests import delete
+
 
 if TYPE_CHECKING:
     from typing_extensions import Self
