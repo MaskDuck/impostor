@@ -17,7 +17,7 @@ class Impostor(commands.Bot):
             activity=Activity(type=ActivityType.watching, name="over is-a.dev"),
             status=Status.dnd,
         )
-        self.db: Database = Database(mongodb_url = getenv("MONGODB_URL"), bot=self)
+        # self.db: Database = Database(mongodb_url = getenv("MONGODB_URL"), bot=self)
         self.load_extension("exts.suggestion")
         self.load_extension("exts.meta")
         self.load_extension("exts.ping")
