@@ -14,7 +14,7 @@ from nextcord import (
     Color,
     NotFound,
     ButtonStyle,
-    Permissions
+    Permissions,
 )
 
 if TYPE_CHECKING:
@@ -180,7 +180,6 @@ class Ban(BaseCog):
     async def on_ready(self):
         self.bot.add_view(AppealView())
         self.bot.add_view(BanState())
-
 
 
 def setup(bot):
