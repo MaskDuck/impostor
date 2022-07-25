@@ -33,7 +33,7 @@ class AppealModal(Modal):
         super().__init__("Appeal your ban.")
         self.__reason = TextInput(
             style=TextInputStyle.short,
-            label="Why was you banned?",
+            label="Why were you banned?",
             placeholder="If you don't know, guess.",
             required=True,
             row=1,
