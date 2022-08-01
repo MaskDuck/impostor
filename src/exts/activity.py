@@ -1,7 +1,8 @@
-from nextcord.ext import activities, commands
-from models.basecog import BaseCog
-from nextcord import slash_command, SlashOption, Interaction, ChannelType
+from nextcord import ChannelType, Interaction, SlashOption, slash_command
 from nextcord.abc import GuildChannel
+from nextcord.ext import activities, commands
+
+from models.basecog import BaseCog
 
 
 class Activity(BaseCog):

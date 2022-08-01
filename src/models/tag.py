@@ -1,16 +1,18 @@
 from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import typing_extensions
 
-
 if TYPE_CHECKING:
-    from typing_extensions import Self
-    from ..types import Tag as TagData
+    from typing import TypeVar
+
+    from nextcord.ext.commands import Bot
     from nextcord.state import ConnectionState
     from nextcord.user import User as NextcordUser
-    from nextcord.ext.commands import Bot
-    from typing import TypeVar
+    from typing_extensions import Self
+
+    from ..types import Tag as TagData
 
     BotLike = TypeVar("BotLike", bound=Bot)
 
