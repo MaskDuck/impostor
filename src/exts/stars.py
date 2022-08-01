@@ -29,7 +29,10 @@ class Stars(BaseCog):
     async def update_stars(self):
         STAR_CHANNEL: VoiceChannel = self._bot.get_channel(STAR_CHANNEL_ID)
         async with aiohttp.ClientSession() as ses:
-            async with ses.get("https://api.github.com/repos/is-a-dev/register", headers={"Accept": "application/vnd.github+json"}) as res:
+            async with ses.get(
+                "https://api.github.com/repos/is-a-dev/register",
+                headers={"Accept": "application/vnd.github+json"},
+            ) as res:
                 repo_data = await res.json()
         stars = repo_data["stargazers_count"]
         expected_name = "⭐ {} Stars".format(stars)
