@@ -1,8 +1,9 @@
-from nextcord.ext import commands
-from nextcord import Intents, Status, Activity, ActivityType
-from tomlkit import parse
 from os import getenv
+
 from dotenv import load_dotenv
+from nextcord import Activity, ActivityType, Intents, Status
+from nextcord.ext import commands
+from tomlkit import parse
 
 load_dotenv()
 from helper.db import Database
