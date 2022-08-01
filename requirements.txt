@@ -5,3 +5,4 @@ jishaku
 nextcord-ext-activities
 typing_extensions
 pymongo
+tomlkit
