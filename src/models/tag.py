@@ -4,7 +4,6 @@ from typing import TYPE_CHECKING
 import typing_extensions
 
 
-
 if TYPE_CHECKING:
     from typing_extensions import Self
     from ..types import Tag as TagData

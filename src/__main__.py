@@ -30,7 +30,6 @@ class Impostor(commands.Bot):
         print("SUS")
 
 
-
 bot = Impostor()
 
 if getenv("PR_TESTING") in ["0", None]:
