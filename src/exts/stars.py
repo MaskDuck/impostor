@@ -26,7 +26,7 @@ class Stars(BaseCog):
     @tasks.loop(minutes=2)
     async def update_stars(self):
         STAR_CHANNEL: VoiceChannel = self._bot.get_channel(
-            self.config["star_counter_channel_id"]
+            self.bot.config["star_counter_channel_id"]
         )
         async with aiohttp.ClientSession() as ses:
             async with ses.get(
