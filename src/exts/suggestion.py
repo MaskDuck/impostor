@@ -13,6 +13,7 @@ if TYPE_CHECKING:
 class Suggestion(BaseCog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
+        self.suggestion_channel = self.config["suggestion_channel"]
 
     suggestion_mode = ["the server", "the service"]
 
@@ -49,14 +50,15 @@ class Suggestion(BaseCog):
                 text=f"By {str(interaction.user)} (ID {interaction.user.id})"
             )
 
-        channel = self.bot.get_channel(831425425510760478)
+        channel = self.suggestion_channel
         message = await channel.send(embed=embed)
         await message.add_reaction("✅")
         await message.add_reaction("❌")
         log_channel = self.bot.get_channel(955105139461607444)
         await log_channel.send(f"{str(interaction.user)} has suggested {suggestion}.")
         await interaction.send(
-            "You can now see your suggestion in <#831425425510760478>.", ephemeral=True
+            f"You can now see your suggestion in <#{self.suggestion_channel}>.",
+            ephemeral=True,
         )
 
     @_suggest.on_autocomplete("for_")
@@ -86,7 +88,7 @@ class Suggestion(BaseCog):
             name="why", description="Why did you deny this request?", required=True
         ),
     ):
-        channel = self.bot.get_channel(831425425510760478)
+        channel = self.suggestion_channel
         message = await channel.fetch_message(messageId)
         embed = message.embeds[0]
         embed.add_field(name=f"Denied by {str(interaction.user)}", value=why)
@@ -107,7 +109,7 @@ class Suggestion(BaseCog):
             name="why", description="Why did you deny this request?", required=False
         ),
     ):
-        channel = self.bot.get_channel(831425425510760478)
+        channel = self.bot.get_channel(self.suggestion_channel)
         message = await channel.fetch_message(messageId)
         embed = message.embeds[0]
         embed.add_field(name=f"Approved by {str(interaction.user)}", value=why)

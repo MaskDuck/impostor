@@ -17,8 +17,6 @@ if TYPE_CHECKING:
 
     BotLike = TypeVar("BotLike", bound=Bot)
 
-STAR_CHANNEL_ID: Final[int] = 973922065923059762  # type: ignore
-
 
 class Stars(BaseCog):
     def __init__(self, bot: BotLike) -> None:
@@ -27,7 +25,9 @@ class Stars(BaseCog):
 
     @tasks.loop(minutes=2)
     async def update_stars(self):
-        STAR_CHANNEL: VoiceChannel = self._bot.get_channel(STAR_CHANNEL_ID)
+        STAR_CHANNEL: VoiceChannel = self._bot.get_channel(
+            self.config["star_counter_channel_id"]
+        )
         async with aiohttp.ClientSession() as ses:
             async with ses.get(
                 "https://api.github.com/repos/is-a-dev/register",

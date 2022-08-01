@@ -22,11 +22,6 @@ if TYPE_CHECKING:
     from nextcord.ui import Button
     from nextcord import Interaction
 
-MAIN_SERVER_ID: Final[int] = 830872854677422150
-APPEAL_SERVER_ID: Final[int] = 958657336765984789
-APPEAL_CHANNEL_ID: Final[int] = 998204336276508742
-UNBANNED_CHANNEL_ID: Final[int] = 958657337290264648
-
 
 class AppealModal(Modal):
     def __init__(self):
@@ -56,8 +51,13 @@ class AppealModal(Modal):
         self.add_item(self.__why)
         self.add_item(self.__improvement)
 
+        self.MAIN_SERVER_ID = self.config["main_server"]
+        self.APPEAL_SERVER_ID = self.config["appeal_server"]
+        self.APPEAL_CHANNEL_ID = self.config["appeal_channel"]
+        self.UNBANNED_CHANNEL_ID = self.config["unbanned_channel"]
+
     async def interaction_check(self, interaction: Interaction):
-        is_a_dev_server = interaction.client.get_guild(MAIN_SERVER_ID)
+        is_a_dev_server = interaction.client.get_guild(self.MAIN_SERVER_ID)
         maintainer_role = utils.get(is_a_dev_server.roles, name="maintainers")
         try:
             await is_a_dev_server.fetch_ban(Object(interaction.user.id))
@@ -70,13 +70,13 @@ class AppealModal(Modal):
                 return False
 
     async def callback(self, interaction):
-        is_a_dev_server = interaction.client.get_guild(MAIN_SERVER_ID)
+        is_a_dev_server = interaction.client.get_guild(self.MAIN_SERVER_ID)
         try:
             ban = await is_a_dev_server.fetch_ban(Object(interaction.user.id))
             ban_reason = ban.reason
         except NotFound:
             ban_reason = "Being a maintainer (Testing)"
-        appeal_channel = interaction.client.get_channel(APPEAL_CHANNEL_ID)
+        appeal_channel = interaction.client.get_channel(self.APPEAL_CHANNEL_ID)
         embed = (
             Embed(
                 title="New Ban Appeal",
@@ -101,7 +101,7 @@ class AppealModal(Modal):
         )
         await interaction.send(
             "Appealed. You'll get your status of your appeal in <#{}>".format(
-                UNBANNED_CHANNEL_ID
+                self.UNBANNED_CHANNEL_ID
             ),
             ephemeral=True,
         )
@@ -141,7 +141,7 @@ class BanState(View):
         # print(interaction.message.mentions)
         user_to_unban = interaction.message.mentions[0]
         await interaction.guild.unban(user_to_unban)
-        unbanned_channel = interaction.client.get_channel(UNBANNED_CHANNEL_ID)
+        unbanned_channel = interaction.client.get_channel(self.UNBANNED_CHANNEL_ID)
         await unbanned_channel.send(
             "{}, you have been unbanned.".format(user_to_unban.mention)
         )
@@ -156,7 +156,7 @@ class BanState(View):
     )
     async def _deny(self, button: Button, interaction: Interaction):
         user_to_unban = interaction.message.mentions[0]
-        unbanned_channel = interaction.client.get_channel(UNBANNED_CHANNEL_ID)
+        unbanned_channel = interaction.client.get_channel(self.UNBANNED_CHANNEL_ID)
         await unbanned_channel.send(
             "{}, your appeal has been denied.".format(user_to_unban.mention)
         )
