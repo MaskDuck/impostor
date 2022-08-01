@@ -1,7 +1,8 @@
-from models.basecog import BaseCog
-from nextcord.ext import commands
-from nextcord import slash_command, SlashOption, Embed, Interaction
 from dns import resolver
+from nextcord import Embed, Interaction, SlashOption, slash_command
+from nextcord.ext import commands
+
+from models.basecog import BaseCog
 
 
 class Utils(BaseCog):

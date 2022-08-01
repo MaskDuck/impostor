@@ -1,19 +1,18 @@
 from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import aiohttp
-
+from aiohttp import ClientSession
+from nextcord.ext import tasks
 
 from models.basecog import BaseCog
-from aiohttp import ClientSession
-
-
-from nextcord.ext import tasks
 
 if TYPE_CHECKING:
     from typing import Final, TypeVar
-    from nextcord.ext.commands import Bot
+
     from nextcord import VoiceChannel
+    from nextcord.ext.commands import Bot
 
     BotLike = TypeVar("BotLike", bound=Bot)
 

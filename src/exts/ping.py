@@ -1,6 +1,7 @@
-from models.basecog import BaseCog
-from nextcord.ext import commands
 from nextcord import Interaction, slash_command
+from nextcord.ext import commands
+
+from models.basecog import BaseCog
 
 
 class Ping(BaseCog):

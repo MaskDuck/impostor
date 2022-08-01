@@ -1,22 +1,22 @@
 from __future__ import annotations
+
 from code import interact
+from types import tag
 from typing import TYPE_CHECKING
 
 import typing_extensions
-
 from black import format_cell
-
-from models.basecog import BaseCog
-from nextcord import slash_command, SlashOption
+from nextcord import SlashOption, slash_command
 from nextcord.ext import application_checks as app_checks
 
-from types import tag
+from models.basecog import BaseCog
 
 if TYPE_CHECKING:
-    from typing_extensions import Self
     from typing import TypeVar
-    from nextcord.ext import commands
+
     from nextcord import Interaction
+    from nextcord.ext import commands
+    from typing_extensions import Self
 
     BotLike = TypeVar("BotLike", bound=commands.Bot)
 
