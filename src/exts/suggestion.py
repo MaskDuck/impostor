@@ -1,10 +1,13 @@
 from __future__ import annotations
-from models.basecog import BaseCog
-from nextcord import SlashOption, Embed, Colour, slash_command, Interaction
-from nextcord.ext import application_checks, commands
-from nextcord.errors import InteractionResponded
+
 from contextlib import suppress
 from typing import TYPE_CHECKING
+
+from nextcord import Colour, Embed, Interaction, SlashOption, slash_command
+from nextcord.errors import InteractionResponded
+from nextcord.ext import application_checks, commands
+
+from models.basecog import BaseCog
 
 if TYPE_CHECKING:
     from nextcord import TextChannel

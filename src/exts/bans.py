@@ -1,26 +1,28 @@
 from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
-from nextcord.ui import View, button as button_decorator, Modal, TextInput
-from models.basecog import BaseCog
-
-from nextcord.ext import commands
-
 from nextcord import (
-    TextInputStyle,
-    Object,
-    utils,
-    Embed,
-    Color,
-    NotFound,
     ButtonStyle,
+    Color,
+    Embed,
+    NotFound,
+    Object,
     Permissions,
+    TextInputStyle,
+    utils,
 )
+from nextcord.ext import commands
+from nextcord.ui import Modal, TextInput, View
+from nextcord.ui import button as button_decorator
+
+from models.basecog import BaseCog
 
 if TYPE_CHECKING:
     from typing import Final
-    from nextcord.ui import Button
+
     from nextcord import Interaction
+    from nextcord.ui import Button
 
 MAIN_SERVER_ID: Final[int] = 830872854677422150
 APPEAL_SERVER_ID: Final[int] = 958657336765984789

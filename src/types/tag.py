@@ -1,6 +1,8 @@
-from typing import TypedDict, Union
-from nextcord.types.member import Member as DiscordMember, User as DiscordUser
 from datetime import datetime
+from typing import TypedDict, Union
+
+from nextcord.types.member import Member as DiscordMember
+from nextcord.types.member import User as DiscordUser
 
 __all__ = "Tag"
 

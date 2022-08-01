@@ -1,6 +1,7 @@
-from models.basecog import BaseCog
+from nextcord import Interaction, slash_command
 from nextcord.ext import commands
-from nextcord import slash_command, Interaction
+
+from models.basecog import BaseCog
 
 
 class Meta(BaseCog):

@@ -1,9 +1,8 @@
-from nextcord.ext import commands
-from nextcord import Intents, Status, Activity, ActivityType
-
+from os import getenv
 
 from dotenv import load_dotenv
-from os import getenv
+from nextcord import Activity, ActivityType, Intents, Status
+from nextcord.ext import commands
 
 load_dotenv()
 from helper.db import Database
@@ -25,6 +24,7 @@ class Impostor(commands.Bot):
         self.load_extension("exts.activity")
         self.load_extension("exts.bans")
         self.load_extension("exts.stars")
+        self.load_extension("exts.roles")
 
     async def on_ready(self):
         print("SUS")

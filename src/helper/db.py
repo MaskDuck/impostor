@@ -1,22 +1,21 @@
 from __future__ import annotations
+
+from datetime import datetime
+from random import randint
+from time import time_ns
 from typing import TYPE_CHECKING, final
 
-from pymongo import MongoClient
 import typing_extensions
-
-from random import randint
-from datetime import datetime
-from time import time_ns
+from pymongo import MongoClient
 
 from models.tag import Tag
 
-
 if TYPE_CHECKING:
-    from typing_extensions import Self
-    from pymongo.collection import Collection
+    from typing import TypeVar
 
     from nextcord.ext.commands import Bot
-    from typing import TypeVar
+    from pymongo.collection import Collection
+    from typing_extensions import Self
 
     BotLike = TypeVar("BotLike", bound=Bot)
 
