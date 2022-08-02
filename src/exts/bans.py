@@ -53,10 +53,10 @@ class AppealModal(Modal):
         self.add_item(self.__why)
         self.add_item(self.__improvement)
 
-        self.MAIN_SERVER_ID: int = self.bot.config["main_server"]
-        self.APPEAL_SERVER_ID: int = self.bot.config["appeal_server"]
-        self.APPEAL_CHANNEL_ID: int = self.bot.config["appeal_channel"]
-        self.UNBANNED_CHANNEL_ID: int = self.bot.config["unbanned_channel"]
+        self.MAIN_SERVER_ID: Final[int] = self.bot.config["main_server"]
+        self.APPEAL_SERVER_ID: Final[int] = self.bot.config["appeal_server"]
+        self.APPEAL_CHANNEL_ID: Final[int] = self.bot.config["appeal_channel"]
+        self.UNBANNED_CHANNEL_ID: Final[int] = self.bot.config["unbanned_channel"]
 
     async def interaction_check(self, interaction: Interaction):
         is_a_dev_server = interaction.client.get_guild(self.MAIN_SERVER_ID)
