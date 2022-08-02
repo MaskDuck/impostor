@@ -53,14 +53,14 @@ class Suggestion(BaseCog):
                 text=f"By {str(interaction.user)} (ID {interaction.user.id})"
             )
 
-        channel = self.suggestion_channel
+        channel = interaction.guild.get_channel(self.suggestion_channel)
         message = await channel.send(embed=embed)
         await message.add_reaction("✅")
         await message.add_reaction("❌")
         log_channel = self.bot.get_channel(955105139461607444)
         await log_channel.send(f"{str(interaction.user)} has suggested {suggestion}.")
         await interaction.send(
-            f"You can now see your suggestion in <#{self.suggestion_channel}>.",
+            f"You can now see your suggestion in <#{self.suggestion_channel.id}>.",
             ephemeral=True,
         )
 
