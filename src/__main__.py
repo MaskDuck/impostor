@@ -28,7 +28,7 @@ class Impostor(commands.Bot):
         self.load_extension("exts.roles")
 
     with open("config.toml", "r") as config_file:
-        config = parse(config_file.read())
+        self.config = parse(config_file.read())
 
     async def on_ready(self):
         print("SUS")
