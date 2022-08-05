@@ -91,7 +91,7 @@ class Suggestion(BaseCog):
             name="why", description="Why did you deny this request?", required=True
         ),
     ):
-        channel = self.suggestion_channel
+        channel = interaction.guild.get_channel(self.suggestion_channel)
         message = await channel.fetch_message(messageId)
         embed = message.embeds[0]
         embed.add_field(name=f"Denied by {str(interaction.user)}", value=why)
