@@ -3,6 +3,7 @@ from os import getenv
 from dotenv import load_dotenv
 from nextcord import Activity, ActivityType, Intents, Status
 from nextcord.ext import commands
+from tomlkit import parse
 
 load_dotenv()
 from helper.db import Database
@@ -25,6 +26,9 @@ class Impostor(commands.Bot):
         self.load_extension("exts.bans")
         self.load_extension("exts.stars")
         self.load_extension("exts.roles")
+
+    with open("config.toml", "r") as config_file:
+        config = parse(config_file.read())
 
     async def on_ready(self):
         print("SUS")
