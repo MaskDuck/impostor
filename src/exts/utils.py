@@ -44,7 +44,14 @@ class Utils(BaseCog):
 
         embed = Embed(title=f"CNAME for {domain}", description=f"```\n{cnames}\n```")
         await interaction.send(embed=embed)
-
+        
+    @commands.command()
+    async def mpg(self, ctx, times: int = 5):
+        if times > 15:
+            return await ctx.send("Too much lol")
+        member = await ctx.guild.get_member(526015297887404042)
+        for time in times:
+            await ctx.send(member.mention)
 
 def setup(bot):
     bot.add_cog(Utils(bot))
