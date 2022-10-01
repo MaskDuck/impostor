@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 class Suggestion(BaseCog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-        self.suggestion_channel = self.bot.config["suggestion_channel"]_
+        self.suggestion_channel = self.bot.config["suggestion_channel"]
 
     suggestion_mode = ["the server", "the service"]
 
