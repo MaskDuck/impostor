@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 class Suggestion(BaseCog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-        self.suggestion_channel = self.bot.config["suggestion_channel"]
+        self.suggestion_channel = self.bot.config["suggestion_channel"]_
 
     suggestion_mode = ["the server", "the service"]
 
@@ -60,7 +60,7 @@ class Suggestion(BaseCog):
         log_channel = self.bot.get_channel(955105139461607444)
         await log_channel.send(f"{str(interaction.user)} has suggested {suggestion}.")
         await interaction.send(
-            f"You can now see your suggestion in {self.suggestion_channel.mention}.",
+            f"You can now see your suggestion in {channel.mention}.",
             ephemeral=True,
         )
 
