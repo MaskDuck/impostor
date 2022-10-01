@@ -26,6 +26,7 @@ class Impostor(commands.Bot):
         self.load_extension("exts.bans")
         self.load_extension("exts.stars")
         self.load_extension("exts.roles")
+        self.load_extension("onami")
 
     with open("config.toml", "r") as config_file:
         config = parse(config_file.read())
