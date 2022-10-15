@@ -1,10 +1,11 @@
+from logging import StreamHandler, getLogger
 from os import getenv
 
 from dotenv import load_dotenv
 from nextcord import Activity, ActivityType, Intents, Status
 from nextcord.ext import commands
 from tomlkit import parse
-from logging import getLogger, StreamHandler
+
 load_dotenv()
 from helper.db import Database
 
