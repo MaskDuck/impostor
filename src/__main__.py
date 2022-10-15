@@ -14,11 +14,13 @@ _log.setLevel(1)
 _log.addHandler(StreamHandler())
 
 
+intents = Intents.all()
+intents.presences = False
 class Impostor(commands.Bot):
     def __init__(self):
         super().__init__(
             command_prefix="sus ",
-            intents=Intents.all(),
+            intents=,
             activity=Activity(type=ActivityType.watching, name="over is-a.dev"),
             status=Status.dnd,
         )
