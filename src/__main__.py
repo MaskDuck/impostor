@@ -16,6 +16,8 @@ _log.addHandler(StreamHandler())
 
 intents = Intents.all()
 intents.presences = False
+
+
 class Impostor(commands.Bot):
     def __init__(self):
         super().__init__(
