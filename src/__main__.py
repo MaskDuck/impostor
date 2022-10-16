@@ -20,7 +20,7 @@ class Impostor(commands.Bot):
     def __init__(self):
         super().__init__(
             command_prefix="sus ",
-            intents=,
+            intents=intents,
             activity=Activity(type=ActivityType.watching, name="over is-a.dev"),
             status=Status.dnd,
         )
