@@ -62,8 +62,8 @@ class AppealModal(Modal):
         is_a_dev_server = interaction.client.get_guild(self.MAIN_SERVER_ID)
         maintainer_role = utils.get(is_a_dev_server.roles, name="maintainers")
         try:
-            await is_a_dev_server.fetch_ban(Object(interaction.user.id))
-            return True
+            result = await is_a_dev_server.fetch_ban(Object(interaction.user.id))
+            return result is not None
         except NotFound:
             if maintainer_role in interaction.user.roles:
                 return True
@@ -122,7 +122,9 @@ class BanState(View):
     def __init__(self):
         super().__init__(timeout=None)
 
-    async def _after_invoke(self, interaction, state):
+    # UNBANNED_CHANNEL_ID = self.config['unbanned_channel']
+
+    async def _after_invoke(self, interaction, state: bool):
         for child in self.children:
             child.disabled = True
 
@@ -138,12 +140,14 @@ class BanState(View):
     @button_decorator(
         label="Approve", style=ButtonStyle.success, custom_id="banappealapproe"
     )
-    async def _approve(self, button: Button, interaction: Interaction):
+    async def _approve(self, _: Button, interaction: Interaction):
         # print(interaction.message.content)
         # print(interaction.message.mentions)
         user_to_unban = interaction.message.mentions[0]
         await interaction.guild.unban(user_to_unban)
-        unbanned_channel = interaction.client.get_channel(self.UNBANNED_CHANNEL_ID)
+        unbanned_channel = interaction.client.get_channel(
+            interaction.client.UNBANNED_CHANNEL_ID
+        )
         await unbanned_channel.send(
             "{}, you have been unbanned.".format(user_to_unban.mention)
         )
@@ -156,9 +160,11 @@ class BanState(View):
     @button_decorator(
         label="Deny", style=ButtonStyle.danger, custom_id="banappealdenial"
     )
-    async def _deny(self, button: Button, interaction: Interaction):
+    async def _deny(self, _: Button, interaction: Interaction):
         user_to_unban = interaction.message.mentions[0]
-        unbanned_channel = interaction.client.get_channel(self.UNBANNED_CHANNEL_ID)
+        unbanned_channel = interaction.client.get_channel(
+            interaction.client.UNBANNED_CHANNEL_ID
+        )
         await unbanned_channel.send(
             "{}, your appeal has been denied.".format(user_to_unban.mention)
         )
