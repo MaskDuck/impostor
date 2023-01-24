@@ -16,12 +16,14 @@ _log.addHandler(StreamHandler())
 
 intents = Intents.all()
 intents.presences = False
+
+
 class Impostor(commands.Bot):
     def __init__(self):
         super().__init__(
             command_prefix="sus ",
             intents=intents,
-            activity=Activity(type=ActivityType.watching, name="over is-a.dev"),
+            activity=Activity(type=ActivityType.watching, name="the unreality"),
             status=Status.dnd,
         )
         # self.db: Database = Database(mongodb_url = getenv("MONGODB_URL"), bot=self)
@@ -33,6 +35,7 @@ class Impostor(commands.Bot):
         self.load_extension("exts.bans")
         self.load_extension("exts.stars")
         self.load_extension("exts.roles")
+        self.load_extension("exts.help")
         self.load_extension("onami")
 
     with open("config.toml", "r") as config_file:

@@ -11,6 +11,7 @@ class BaseCog(commands.Cog):
             ctx.channel.id == 960446827579199488
             or 830875873027817484 in [role.id for role in ctx.author.roles]
             or 959723229805707285 in [role.id for role in ctx.author.roles]
+            or 970789483836485763 in [role.id for role in ctx.author.roles]
             or self.bot.is_owner(ctx.author)
         )
 
@@ -19,5 +20,6 @@ class BaseCog(commands.Cog):
             interaction.channel.id == 960446827579199488
             or 830875873027817484 in [role.id for role in interaction.user.roles]
             or 959723229805707285 in [role.id for role in interaction.user.roles]
+            or 970789483836485763 in [role.id for role in interaction.user.roles]
             or self.bot.is_owner(interaction.user)
         )
