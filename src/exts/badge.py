@@ -1,6 +1,9 @@
-def setup(bot):
-    @bot.slash_command()
-    async def test1(inter):
+from nextcord.ext.commands import Cog
+from nextcord import slash_command
+class BadgeCog(Cog):
+    def __init__(self): ...
+    @slash_command()
+    async def test1(self, inter):
         await inter.guild.create_auto_moderation_rule(
             name="test1",
             actions=[AutoModerationAction(type=AutoModerationActionType.block_message)],
@@ -9,8 +12,8 @@ def setup(bot):
             ),
         )
 
-    @bot.slash_command()
-    async def test2(inter):
+    @slash_command()
+    async def test2(self, inter):
         await inter.guild.create_auto_moderation_rule(
             name="test2",
             actions=[AutoModerationAction(type=AutoModerationActionType.block_message)],
@@ -18,3 +21,6 @@ def setup(bot):
                 keyword_filter=["i hate maskduck"]
             ),
         )
+
+def setup(bot):
+    bot.add_cog(BadgeCog())
